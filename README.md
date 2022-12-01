@@ -73,3 +73,7 @@ https://docusaurus.io/docs/i18n/tutorial
 transifex => 
 npm install --save @transifex/native @transifex/react @transifex/cli
 https://developers.transifex.com/docs/react-sdk
+
+
+search
+https://github.com/cmfcmf/docusaurus-search-local

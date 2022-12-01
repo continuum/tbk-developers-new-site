@@ -153,6 +153,12 @@ const config = {
             }
           }
         },
+      ],
+      [
+        require.resolve("@cmfcmf/docusaurus-search-local"),
+        {
+          maxSearchResults: 8,
+        },
       ]
     ],
     themes: ["docusaurus-theme-openapi-docs"]
