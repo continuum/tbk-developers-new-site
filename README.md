@@ -58,3 +58,18 @@ Plugin de Open api
 
 Generar documentacion desde yml
 yarn docusaurus gen-api-docs all
+
+
+
+
+
+url GitGub Pages : https://github.com/continuum.github.io/tbk-developers-new-site
+
+
+Alternativas traduccion 
+https://docusaurus.io/docs/i18n/tutorial
+
+
+transifex => 
+npm install --save @transifex/native @transifex/react @transifex/cli
+https://developers.transifex.com/docs/react-sdk
