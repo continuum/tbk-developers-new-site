@@ -28,7 +28,7 @@ const config = {
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'es',
-    locales: ['es','en'],
+    locales: ['es', 'en'],
   },
 
   presets: [
@@ -51,7 +51,7 @@ const config = {
           editUrl: `https://github.com/${organizationName}/${projectName}/tree/main/`,
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.scss"),
         },
       }),
     ],
@@ -73,7 +73,7 @@ const config = {
             position: 'left',
             label: 'Tutorial',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             label: "Petstore API",
             position: "left",
@@ -136,32 +136,33 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-    plugins: [
-      [
-        "docusaurus-plugin-openapi-docs",
-        {
-          id: "openapi",
-          docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
-          config: {
-            petstore: { // "petstore" is considered the <id> that you will reference in the CLI
-              specPath: "examples/petstore.yaml", // path or URL to the OpenAPI spec
-              outputDir: "docs/petstore", // output directory for generated *.mdx and sidebar.js files
-              sidebarOptions: {
-                groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
-                categoryLinkSource: "tag"
-              },
-            }
+  plugins: [
+    "docusaurus-plugin-sass",
+    [
+      "docusaurus-plugin-openapi-docs",
+      {
+        id: "openapi",
+        docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
+        config: {
+          petstore: { // "petstore" is considered the <id> that you will reference in the CLI
+            specPath: "examples/petstore.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/petstore", // output directory for generated *.mdx and sidebar.js files
+            sidebarOptions: {
+              groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
+              categoryLinkSource: "tag"
+            },
           }
-        },
-      ],
-      [
-        require.resolve("@cmfcmf/docusaurus-search-local"),
-        {
-          maxSearchResults: 8,
-        },
-      ]
+        }
+      },
     ],
-    themes: ["docusaurus-theme-openapi-docs"]
+    [
+      require.resolve("@cmfcmf/docusaurus-search-local"),
+      {
+        maxSearchResults: 8,
+      },
+    ]
+  ],
+  themes: ["docusaurus-theme-openapi-docs"]
 };
 
 module.exports = config;
