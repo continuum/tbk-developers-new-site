@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktbk_developers=self.webpackChunktbk_developers||[]).push([[6104],{85584:e=>{e.exports=JSON.parse('{"label":"hola","permalink":"/tbk-developers-new-site/blog/tags/hola","allTagsPath":"/tbk-developers-new-site/blog/tags","count":1}')}}]);

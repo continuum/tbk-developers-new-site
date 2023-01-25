@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktbk_developers=self.webpackChunktbk_developers||[]).push([[5622],{56763:e=>{e.exports=JSON.parse('{"label":"docusaurus","permalink":"/tbk-developers-new-site/blog/tags/docusaurus","allTagsPath":"/tbk-developers-new-site/blog/tags","count":4}')}}]);

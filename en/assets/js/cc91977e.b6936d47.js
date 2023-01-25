@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunktbk_developers=self.webpackChunktbk_developers||[]).push([[4439],{43944:e=>{e.exports=JSON.parse('{"permalink":"/tbk-developers-new-site/en/blog/tags/docusaurus","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
