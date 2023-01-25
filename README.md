@@ -76,4 +76,5 @@ https://developers.transifex.com/docs/react-sdk
 
 
 search
+https://docusaurus.io/docs/search#using-local-search
 https://github.com/cmfcmf/docusaurus-search-local
