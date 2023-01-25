@@ -55,9 +55,12 @@ https://github.com/mvarlic/tbk-developers
 
 Plugin de Open api
  https://docusaurus-openapi.tryingpan.dev/petstore/get-order-by-id
+ https://docusaurus-openapi.tryingpan.dev
 
 Generar documentacion desde yml
 yarn docusaurus gen-api-docs all
+Limpiar documentacion
+yarn docusaurus clean-api-docs all
 
 
 

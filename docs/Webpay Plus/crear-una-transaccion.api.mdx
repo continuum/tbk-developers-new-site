@@ -1,0 +1,66 @@
+---
+id: crear-una-transaccion
+title: "Crear una transacción"
+description: "Permite inicializar una transacción en Webpay. Como respuesta a la invocación se genera un token que representa en forma única una transacción"
+sidebar_label: "Crear una transacción"
+hide_title: true
+hide_table_of_contents: true
+api: {"tags":["transacciones"],"description":"Permite inicializar una transacción en Webpay. Como respuesta a la invocación se genera un token que representa en forma única una transacción","requestBody":{"content":{"application/json":{"schema":{"type":"object","properties":{"buy_order":{"type":"string","description":"Orden de compra de la tienda. Este número debe ser único para cada transacción. Largo máximo 26. La orden de compra puede tener Números, letras, mayúsculas y minúsculas, y los signos |_=&%.,~:/?[+!@()>-","example":"ordenCompra12345678","maxLength":26},"session_id":{"type":"string","description":"Identificador de sesión, uso interno de comercio, este valor es devuelto al final de la transacción. Largo máximo 61","example":"sesion1234557545","maxLength":61},"amount":{"type":"number","description":"Monto de la transacción. Máximo 2 decimales para USD. Largo máximo 17","format":"float","example":10000},"returnUrl":{"type":"string","description":"URL del comercio, a la cual Webpay redireccionará posterior al proceso de autorización. Largo máximo 256","example":"http://www.comercio.cl/webpay/retorno","maxLength":256}}}}},"required":true},"responses":{"200":{"description":"(OK) Se inicializo una transaccion correctamente","content":{"application/json":{"schema":{"type":"object","properties":{"token":{"type":"string","description":"Token de la transacción. Largo 64","example":"e9d555262db0f989e49d724b4db0b0af367cc415cde41f500a776550fc5fddd3","minLength":65,"maxLength":64},"url":{"type":"string","description":"URL de formulario de pago Webpay. Largo máximo 255.","example":"https://webpay3gint.transbank.cl/webpayserver/initTransaction","maxLength":255}}}}}},"400":{"description":"El mensaje JSON es inválido. Puedes ser que no corresponda a un mensaje bien estructurado o que contenga un campo no esperado","content":{"application/json":{"schema":{"type":"object","properties":{"error_message":{"type":"string","example":"token is required"}}}}}},"401":{"description":"No autorizado. API Key y/o API Secret inválidos"},"404":{"description":"La transacción no ha sido encontrada"},"405":{"description":"Método no permitido"},"406":{"description":"No fue posible procesar la respuesta en el formato que el cliente indica"},"415":{"description":"Tipo de mensaje no permitido"},"422":{"description":"El requerimiento no ha podido ser procesado ya sea por validaciones de datos o por lógica de negocios"},"500":{"description":"Ha ocurrido un error inesperado"}},"method":"post","path":"/rswebpaytransaction/api/webpay/v1.2/transactions","servers":[{"url":"https://webpay3gint.transbank.cl"}],"security":[{"tbkApiKeyId":[],"tbkApiKeySecret":[]}],"securitySchemes":{"tbkApiKeyId":{"type":"apiKey","name":"Tbk-Api-Key-Id","in":"header","description":"Código de comercio"},"tbkApiKeySecret":{"type":"apiKey","name":"Tbk-Api-Key-Secret","in":"header","description":"LLave secreta"}},"jsonRequestBodyExample":{"buy_order":"ordenCompra12345678","session_id":"sesion1234557545","amount":10000,"returnUrl":"http://www.comercio.cl/webpay/retorno"},"info":{"title":"API Transaccion simple - WebPay Plus","description":"Una transacción de autorización normal (o transacción normal), corresponde a una solicitud de autorización financiera de un pago con tarjetas de crédito o débito, en donde quién realiza el pago ingresa al sitio del comercio, selecciona productos o servicio, y el ingreso asociado a los datos de la tarjeta de crédito, débito o prepago lo realiza en forma segura en Webpay.","termsOfService":"https://www.transbankdevelopers.cl/termino-y-condiciones","version":"1.0.0"},"postman":{"name":"Crear una transacción","description":{"content":"Permite inicializar una transacción en Webpay. Como respuesta a la invocación se genera un token que representa en forma única una transacción","type":"text/plain"},"url":{"path":["rswebpaytransaction","api","webpay","v1.2","transactions"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Content-Type","value":"application/json"},{"key":"Accept","value":"application/json"}],"method":"POST","body":{"mode":"raw","raw":"\"\"","options":{"raw":{"language":"json"}}}}}
+sidebar_class_name: "post api-method"
+info_path: docs/Webpay Plus/api-transaccion-simple-webpay-plus
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## Crear una transacción
+
+
+
+Permite inicializar una transacción en Webpay. Como respuesta a la invocación se genera un token que representa en forma única una transacción
+
+<MimeTabs><TabItem label={"application/json"} value={"application/json-schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Request Body</strong><strong style={{"fontSize":"var(--ifm-code-font-size)","color":"var(--openapi-required)"}}> required</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"buy_order"} required={false} deprecated={undefined} schemaDescription={"Orden de compra de la tienda. Este número debe ser único para cada transacción. Largo máximo 26. La orden de compra puede tener Números, letras, mayúsculas y minúsculas, y los signos |_=&%.,~:/?[+!@()>-"} schemaName={"string"} qualifierMessage={"**Possible values:** `<= 26 characters`"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"session_id"} required={false} deprecated={undefined} schemaDescription={"Identificador de sesión, uso interno de comercio, este valor es devuelto al final de la transacción. Largo máximo 61"} schemaName={"string"} qualifierMessage={"**Possible values:** `<= 61 characters`"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"amount"} required={false} deprecated={undefined} schemaDescription={"Monto de la transacción. Máximo 2 decimales para USD. Largo máximo 17"} schemaName={"float"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"returnUrl"} required={false} deprecated={undefined} schemaDescription={"URL del comercio, a la cual Webpay redireccionará posterior al proceso de autorización. Largo máximo 256"} schemaName={"string"} qualifierMessage={"**Possible values:** `<= 256 characters`"} defaultValue={undefined}></SchemaItem></ul></details></TabItem></MimeTabs><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+(OK) Se inicializo una transaccion correctamente
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"token"} required={false} deprecated={undefined} schemaDescription={"Token de la transacción. Largo 64"} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 65 characters` and `<= 64 characters`"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"url"} required={false} deprecated={undefined} schemaDescription={"URL de formulario de pago Webpay. Largo máximo 255."} schemaName={"string"} qualifierMessage={"**Possible values:** `<= 255 characters`"} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"token\": \"e9d555262db0f989e49d724b4db0b0af367cc415cde41f500a776550fc5fddd3\",\n  \"url\": \"https://webpay3gint.transbank.cl/webpayserver/initTransaction\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+El mensaje JSON es inválido. Puedes ser que no corresponda a un mensaje bien estructurado o que contenga un campo no esperado
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"error_message"} required={false} deprecated={undefined} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"error_message\": \"token is required\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+No autorizado. API Key y/o API Secret inválidos
+
+</div><div></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+La transacción no ha sido encontrada
+
+</div><div></div></TabItem><TabItem label={"405"} value={"405"}><div>
+
+Método no permitido
+
+</div><div></div></TabItem><TabItem label={"406"} value={"406"}><div>
+
+No fue posible procesar la respuesta en el formato que el cliente indica
+
+</div><div></div></TabItem><TabItem label={"415"} value={"415"}><div>
+
+Tipo de mensaje no permitido
+
+</div><div></div></TabItem><TabItem label={"422"} value={"422"}><div>
+
+El requerimiento no ha podido ser procesado ya sea por validaciones de datos o por lógica de negocios
+
+</div><div></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Ha ocurrido un error inesperado
+
+</div><div></div></TabItem></ApiTabs></div>
+      

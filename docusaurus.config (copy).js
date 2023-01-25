@@ -75,6 +75,11 @@ const config = {
           },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
+            label: "Petstore API",
+            position: "left",
+            to: "/docs/category/petstore-api"
+          },
+          {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
             position: 'right',
