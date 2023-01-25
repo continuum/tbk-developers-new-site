@@ -140,8 +140,8 @@ const config = {
         docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
         config: {
           petstore: { // "petstore" is considered the <id> that you will reference in the CLI
-            specPath: "examples/Webpay Plus.yaml", // path or URL to the OpenAPI spec
-            outputDir: "docs/Webpay Plus", // output directory for generated *.mdx and sidebar.js files
+            specPath: "examples/WebpayPlus.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/WebpayPlus", // output directory for generated *.mdx and sidebar.js files
             sidebarOptions: {
               groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
               categoryLinkSource: "tag"
