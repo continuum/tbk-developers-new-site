@@ -41,6 +41,10 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
+      - name: Clean docs
+        run: yarn docusaurus clean-api-docs all
+      - name: Build from YML OpenApi files
+        run: yarn docusaurus gen-api-docs all
       - name: Build
         run: yarn build
       - name: Setup Pages
