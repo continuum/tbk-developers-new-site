@@ -44,12 +44,6 @@ const config = {
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem" // Derived from docusaurus-theme-openapi
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: `https://github.com/${organizationName}/${projectName}/tree/main/`,
-        },
         theme: {
           customCss: require.resolve("./src/css/custom.scss"),
         },
@@ -61,70 +55,127 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+      logo: {
+        alt: 'My Site Logo',
+        src: 'img/logo.svg',
+      },
+      items: [
+        {
+          type: 'custom-myAwesomeNavbarItem', 
+          position: "left",
+          itemProp: 44, 
+          anotherProp: "xyz"
         },
-        items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          { to: '/blog', label: 'Blog', position: 'left' },
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
+        /*
+        {
+          type: 'doc',
+          docId: 'intro',
+          position: 'left',
+          label: 'Tutorial',
+          to: '/blog',
+        },
+        { to: '/blog', label: 'Blog', position: 'left' },
+        {
+          href: 'https://github.com/facebook/docusaurus',
+          label: 'GitHub',
+          position: 'right',
+        },
+        */
+      ],
       },
       footer: {
-        style: 'dark',
+        style: 'light',
         links: [
           {
-            title: 'Docs',
+            title: 'Productos',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Webpay',
+                href: '#',
+              },
+              {
+                label: 'Ecosistema QR - Onepay',
+                href: '#',
+              },
+              {
+                label: 'Patpass',
+                href: '#',
+              },
+              {
+                label: 'POS Integrado',
+                href: '#',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Documentación',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Introducción',
+                href: '#',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'SDK Global',
+                href: '#',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'SDK POS',
+                href: '#',
+              },
+              {
+                label: 'Plugins',
+                href: '#',
+              },
+              {
+                label: 'Recursos Gráficos',
+                href: '#',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'Ayuda y soporte',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: 'Soporte y comunidad Slack',
+                href: '#',
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                label: 'Preguntas frecuentes',
+                href: '#',
+              },
+              {
+                label: 'Formulario de contacto',
+                href: '#',
+              },
+              {
+                label: 'Déjanos tus ideas en GitHub',
+                href: '#',
+              },
+              {
+                label: 'Canal de youtube',
+                href: '#',
               },
             ],
           },
+          {
+            title: 'Lista de integradores',
+            items: [
+              {
+                label: 'Listado de Integradores',
+                href: '#',
+              },
+              {
+                label: 'Soluciones ingregrales',
+                href: '#',
+              }
+            ],
+          },
+          {
+            title: 'Referencia API',
+            items: [],
+          }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `© 2023. Hecho con amor por CumbreGroup, Continuum y Transbank.`,
       },
       prism: {
         theme: lightCodeTheme,
