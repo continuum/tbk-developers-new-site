@@ -190,16 +190,33 @@ const config = {
         id: "openapi",
         docsPluginId: "classic", // e.g. "classic" or the plugin-content-docs id
         config: {
-          petstore: { // "petstore" is considered the <id> that you will reference in the CLI
+          webpayPlus: { // "petstore" is considered the <id> that you will reference in the CLI
             specPath: "examples/WebpayPlus.yaml", // path or URL to the OpenAPI spec
             outputDir: "docs/WebpayPlus", // output directory for generated *.mdx and sidebar.js files
             sidebarOptions: {
               groupPathsBy: "tag", // generate a sidebar.js slice that groups operations by tag
               categoryLinkSource: "tag"
             },
-          }
+          },
+          webpayPlusMall: { // "petstore" is considered the <id> that you will reference in the CLI
+            specPath: "examples/WebpayPlusMall.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/WebpayPlusMall", // output directory for generated *.mdx and sidebar.js files
+          },
+          oneclick: { // "petstore" is considered the <id> that you will reference in the CLI
+            specPath: "examples/Oneclick.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/Oneclick", // output directory for generated *.mdx and sidebar.js files
+          },
+          transaccionCompleta: { // "petstore" is considered the <id> that you will reference in the CLI
+            specPath: "examples/Transaccion Completa.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/Transaccion Completa", // output directory for generated *.mdx and sidebar.js files
+          },
+          transaccionCompletaMall: { // "petstore" is considered the <id> that you will reference in the CLI
+            specPath: "examples/Transaccion Completa Mall.yaml", // path or URL to the OpenAPI spec
+            outputDir: "docs/Transaccion Completa Mall", // output directory for generated *.mdx and sidebar.js files
+          },
+
         }
-      },
+      }
     ],
     [
       require.resolve("@cmfcmf/docusaurus-search-local"),

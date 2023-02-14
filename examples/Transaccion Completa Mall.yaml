@@ -1,0 +1,766 @@
+openapi: 3.0.3
+info:
+  title: Transacción Completa Mall
+  description: Este producto tiene requerimientos comerciales más estrictos que el resto de los productos. No inicies la integración si aún no completan la afiliación comercial..
+  termsOfService: https://www.transbankdevelopers.cl/termino-y-condiciones
+  version: 1.0.0
+externalDocs:
+  description: Documentacion
+  url: https://www.transbankdevelopers.cl/documentacion/transaccion-completa
+servers:
+  - url: https://webpay3gint.transbank.cl
+tags:
+  - name: Transaccion Completa Mall
+    description: Todo lo relacionado a transacciones completas mall,  este producto tiene requerimientos comerciales más estrictos que el resto de los productos. No inicies la integración si aún no completan la afiliación comercial.
+    
+paths:
+  /rswebpaytransaction/api/webpay/v1.2/transactions:
+    post:
+      tags: 
+      - Transaccion Completa Mall
+      summary: Crear una Transacción Completa Mall
+      description: "Para crear una Transacción Completa Mall basta llamar al método Transaction.create() Transaction.create() Completa Mall Permite inicializar una transacción Completa Mall en Webpay. Como respuesta a la invocación se genera un token que representa en forma única una transacción.Es importante considerar que una vez invocado este método, el token que es entregado tiene un periodo reducido de vida de 5 minutos, posterior a esto el token es caducado y no podrá ser utilizado en un pago."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyCrearTransaccionCompletaMallPost'
+        required: true
+      responses:
+        200:
+          description: (OK) La informacion de anulacion o reversa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaExitosaCrearTransaccionCompletaMall'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        405:
+          $ref: '#/components/responses/MethodNotAllowed'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  
+  /rswebpaytransaction/api/webpay/v1.2/transactions/{token}/installments:
+    post:
+      tags: 
+      - Transaccion Completa Mall
+      summary: Consulta de cuotas Completa Mall
+      description: "Para consultar el valor de las cuotas que pagará el tarjeta habiente en cada transacción dentro transacción Completa Mall, es necesario llamar al método Transaction.installments()Transaction.installments() Completa MallOperación que permite obtener el monto de la cuota a partir del número de cuotas. El id de la consulta que selecciona el tarjetahabiente debe ser informado en la invocación de la confirmación."
+      parameters:
+      - $ref: '#/components/parameters/Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyConsultarCuotasTransaccionCompletaMallPost'
+        required: true
+      responses:
+        200:
+          description: (OK) La informacion de anulacion o reversa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaExitosaConsultarCuotasTransaccionCompletaMall'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        405:
+          $ref: '#/components/responses/MethodNotAllowed'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+   
+  /rswebpaytransaction/api/webpay/v1.2/transactions/{token}:
+    put:
+      tags: 
+      - Transaccion Completa Mall
+      summary: Confirmación de la transacción Completa Mall
+      description: "Una vez iniciada la transacción y consultado el monto de las cuotas por cada subtransacción, puedes confirmar y obtener el resultado de una transacción completa usando el metodo Transaction.commit().Transaction.commit() Completa Mall Operación que permite confirmar una transacción. Retorna el estado de la transacción."
+      parameters:
+      - $ref: '#/components/parameters/Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyConfirmarTransaccionCompletaPost'
+        required: true
+      responses:
+        200:
+          description: (OK) La informacion de anulacion o reversa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaExitosaConfirmarTransaccionCompletaMall'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        405:
+          $ref: '#/components/responses/MethodNotAllowed'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    
+    get:
+      tags: 
+      - Transaccion Completa Mall
+      summary: Consultar estado de una Transacción Completa Mall
+      description: "Esta operación permite obtener el estado de la transacción Completa Mall en cualquier momento. En condiciones normales es probable que no se requiera ejecutar, pero en caso de ocurrir un error inesperado permite conocer el estado y tomar las acciones que correspondan. Transaction.status() Completa MallObtiene resultado de transacción a partir de un token."
+      parameters:
+      - $ref: '#/components/parameters/Token'
+      responses:
+        200:
+          description: (OK) La informacion de anulacion o reversa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaExitosaConsultarEstadoTransaccionCompletaMall'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        405:
+          $ref: '#/components/responses/MethodNotAllowed'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+    
+  /rswebpaytransaction/api/webpay/v1.2/transactions/{token}/refunds:
+    post:
+      tags: 
+      - Transaccion Completa Mall
+      summary: Anulación Transacción Completa Mall
+      description: "Permite generar el reembolso del total o parte del monto de una transacción completa. Dependiendo de la siguiente lógica de negocio la invocación a esta operación generará una reversa o una anulación:Si se especifica un valor en el campo “amount” se ejecutará siempre una anulación.Si se supera el tiempo máximo para ejecutar una reversa se ejecutará una anulación.Si no se ha dado ninguno de los casos anteriores se ejecutará una reversa."
+      parameters:
+      - $ref: '#/components/parameters/Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyReversarAnularTransaccionCompletaMallPost'
+        required: true
+      responses:
+        200:
+          description: (OK) La informacion de anulacion o reversa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaExitosaAnularTransaccionCompletaMall'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        405:
+          $ref: '#/components/responses/MethodNotAllowed'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+   
+  /rswebpaytransaction/api/webpay/v1.2/transactions/{token}/capture:
+    put:
+      tags: 
+      - Transaccion Completa Mall
+      summary: Captura Diferida mall
+      description: "Para realizar esa captura explícita debe usarse el método Transaction.capture()Transaction.capture() Los SDKs permiten indicar opcionalmente el código de comercio de la transacción a capturar, para soportar la captura en comercios Webpay Plus Mall o Transacción Completa Mall. En comercios sin modalidad Mall no es necesario especificar el código de comercio, ya que se usa el indicado en la configuración.El método Transaction.capture() debe ser invocado siempre indicando el código del comercio que realizó la transacción. En el caso de comercios modalidad Mall, el código debe ser el código de la tienda virtual específica."
+      parameters:
+      - $ref: '#/components/parameters/Token'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyCapturaDiferidaTransaccionCompletaMallPut'
+        required: true
+      responses:
+        200:
+          description: (OK) La informacion de anulacion o reversa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaExitosaCapturaDiferidaTransaccionCompletaMall'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        405:
+          $ref: '#/components/responses/MethodNotAllowed'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+   
+  /rswebpaytransaction/api/oneclick/v1.2/transactions/{buyOrder}/refunds:
+    post:
+      tags: 
+        - Oneclick Mall
+      summary: Reversar o anular una transacción
+      description: "Esta operación permite a todo comercio habilitado, reversar o anular una transacción que fue generada en Oneclick.Puedes realizar un reembolso invocando al método refund(), dependiendo de algunas condiciones correspondera a una Reversa o Anulación. Puedes leer más sobre la anulación en la información del producto Webpay para conocer más detalles y restricciones. www.transbankdevelopers.cl/documentacion/oneclick#capturar-una-transaccion"
+      parameters:
+      - $ref: '#/components/parameters/BuyOrder'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyReversarAnularTransaccionCompletaMallPost'
+        required: true
+      responses:
+        200:
+          description: (OK) La informacion de anulacion o reversa
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RespuestaExitosaCrearTransaccionCompletaMall'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        404:
+          $ref: '#/components/responses/NotFound'
+        405:
+          $ref: '#/components/responses/MethodNotAllowed'
+        406:
+          $ref: '#/components/responses/NotAcceptable'
+        415:
+          $ref: '#/components/responses/UnsupportedMediaType'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+         
+
+components:
+  parameters:
+    Token:
+      name: token
+      in: path
+      required: true
+      description: Token de la transacción
+      schema:
+        type : string
+        minimum: 64
+        maximum: 64
+        example: e9d555262db0f989e49d724b4db0b0af367cc415cde41f500a776550fc5fddd3
+    BuyOrder:
+      name: buyOrder
+      in: path
+      required: true
+      description: Orden de compra de la transacción a consultar (se envía en la URL, no en el body).
+      schema:
+        type : string
+        example: 415034240
+
+  schemas:
+        
+    Objeto_details:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Monto de la transacción de una tienda del mall. Máximo 2 decimales para USD. Largo máximo 17.
+          format: float
+        commerce_code:
+          type: string
+          description: Código comercio asignado por Transbank para la tienda perteneciente al mall a la cual corresponde esta transacción. Largo 12.
+          minLength: 12
+          maxLength: 12
+        buy_order:
+          type: string
+          description: "Orden de compra de la tienda del mall. Este número debe ser único para cada transacción. Largo máximo 26. La orden de compra puede tener Números, letras, mayúsculas y minúsculas, y los signos |_=&%.,~:/?[+!@()>-. Largo máximo 26"
+          maxLength: 26
+        
+    BodyCrearTransaccionCompletaMallPost:
+      type: object
+      properties:
+        buy_order:
+          type: string
+          description: Es el código único de la orden de compra generada por el comercio mall. Largo máximo 26
+          maxLength: 26
+        session_id:
+          type: string
+          description: Identificador de sesión, uso interno de comercio, este valor es devuelto al final de la transacción. Largo máximo 61
+          maxLength: 61
+        card_number:
+          type: string
+          description: Número de la tarjeta con la que se debe hacer la transacción. Largo máximo 19
+          maxLength: 19
+        ccv:
+          type: string
+          description: (Opcional) Código que se utiliza como método de seguridad en transacciones en las que la tarjeta no está físicamente presente. Largo máximo 4. No se debe enviar para comercios con la opción sin cvv habilitada.
+          maxLength: 4
+        card_expiration_date:
+          type: string
+          description: Fecha de expiración de la tarjeta con la que se realiza la transacción. Largo máximo 5
+          maxLength: 5
+        details:
+          type: array
+          description: Lista de objetos, uno por cada tienda diferente del mall que participa en la transacción.
+          items:
+            $ref: '#/components/schemas/Objeto_details'
+      example:
+        {
+          "buy_order": "ordenCompra12345678",
+          "session_id": "sesion1234564",
+          "card_number": "4239000000000000",
+          "cvv": 123,
+          "card_expiration_date": "22/10",
+          "details": [
+            {
+              "amount": 10000,
+              "commerce_code": "597055555552",
+              "buy_order": "123456789"
+            },
+            {
+              "amount": 10000,
+              "commerce_code": "597055555553",
+              "buy_order": "123456790"
+            }
+          ]
+        }
+        
+    RespuestaExitosaCrearTransaccionCompletaMall:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Token identificador de la transacción. Largo 64.
+          maxLength: 64
+      example:
+        {
+          "token": "e074d38c628122c63e5c0986368ece22974d6fee1440617d85873b7b4efa48a3",
+        }
+        
+    BodyConsultarCuotasTransaccionCompletaMallPost:
+      type: object
+      properties:
+        commerce_code:
+          type: string
+          description: Código comercio asignado por Transbank para la tienda perteneciente al mall a la cual corresponde esta transacción. Largo 12
+        buy_order:
+          type: string
+          description: Orden de compra de la tienda del mall. Largo máximo 26
+        installments_number:
+          type: string
+          description: Cantidad de cuotas. Largo máximo 2
+          maximum: 99
+      example:
+        {
+          "commerce_code": 597055555552,
+          "buy_order": "123456789",
+          "installments_number": 10
+        }
+        
+    Objeto_deferred_periods:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Monto. Largo 17.
+        period:
+          type: string
+          description: Índice de periodo. Largo 2.
+    RespuestaExitosaConsultarCuotasTransaccionCompletaMall:
+      type: object
+      properties:
+        installments_amount:
+          type: string
+          description: Monto de cada cuota. Largo 17.
+        id_query_installments:
+          type: string
+          description: Identificador de las cuotas. Largo 19.
+        deferred_periods:
+          type: array
+          description: Arreglo con periodos diferidos.
+          items:
+            $ref: '#/components/schemas/Objeto_deferred_periods'
+      example:
+        {
+          "installments_amount": 3334,
+          "id_query_installments": 11,
+          "deferred_periods": [
+            {
+              "amount": 1000,
+              "period": 1
+            }
+          ]
+        }
+        
+    ObjetoConfirmar_details:
+      type: object
+      properties:
+        commerce_code:
+          type: string
+          description: Código comercio asignado por Transbank para la tienda perteneciente al mall a la cual corresponde esta transacción. Largo máximo 12
+        buy_order:
+          type: string
+          description: Orden de compra de la tienda del mall. Largo máximo 26
+        id_query_installments:
+          type: integer
+          description: (Opcional) Identificador de cuota. Largo máximo 19. Solo enviar si el pago es en cuotas
+        deferred_period_index:
+          type: integer
+          description: (Opcional) Cantidad de periodo diferido. Largo máximo 2. Solo enviar si el pago es en cuotas
+        grace_period:
+          type: boolean
+          description: (Opcional) Indicador de periodo de gracia. Solo enviar si el pago es en cuotas
+    BodyConfirmarTransaccionCompletaPost:
+      type: object
+      properties:
+        details:
+          type: array
+          description: Listado con las transacciones mall.
+          items:
+            $ref: '#/components/schemas/ObjetoConfirmar_details'
+      example:
+        {
+          "details": [
+            {
+              "commerce_code": 597055555552,
+              "buy_order": "ordenCompra1234",
+              "id_query_installments": 12,
+              "deferred_period_index": 1,
+              "grace_period": false
+            }
+          ]
+        }
+        
+    ObjetoConfirmarRespuesta_details:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: Monto de la transacción. Largo máximo 17 Acepta decimales en caso de ser operación en dolares
+          format: float
+        status:
+          type: string
+          description: Estado de la transacción (INITIALIZED, AUTHORIZED, REVERSED, FAILED, NULLIFIED, PARTIALLY_NULLIFIED, CAPTURED). Largo máximo 64
+          maxLength: 64
+        authorization_code:
+          type: string
+          description: Código de autorización de la transacción Largo máximo 2
+          maxLength: 2
+        payment_type_code:
+          type: string
+          description: Tipo de pago de la transacción.
+                        <br>VN = Venta Normal.
+                        <br>VC = Venta en cuotas.
+                        <br>SI = 3 cuotas sin interés.
+                        <br>S2 = 2 cuotas sin interés.
+                        <br>NC = N Cuotas sin interés.
+                        <br>VD = Venta Débito. (Próximamente)
+                        <br>VP = Venta Prepago. (Próximamente)
+        responseCode:
+          type: integer
+          description: Código de respuesta de la autorización. Valores posibles
+                        0 = Transacción aprobada
+                        Puedes revisar los códigos de respuesta de rechazo en el siguiente link www.transbankdevelopers.cl/producto/webpay#codigos-de-respuesta-de-autorizacion
+        installments_number:
+          type: integer
+          description: Cantidad de cuotas. Largo máximo 2
+        installments_amount:
+          type: integer
+          description: Monto de cada cuota. Largo máximo 17
+        commerce_code:
+          type: string
+          description: Código comercio de la tienda. Largo 12
+        buy_order:
+          type: string
+          description: Orden de compra de la tienda. Largo máximo 26
+    RespuestaExitosaConfirmarTransaccionCompletaMall:
+      type: object
+      properties:
+        buy_order:
+          type: string
+          description: Orden de compra del mall. Largo máximo 26
+        card_detail:
+          type: object
+          description: Objeto que representa los datos de la tarjeta de crédito del tarjeta habiente.
+          properties:
+            card_number:
+              type: string
+              description: 4 últimos números de la tarjeta de crédito del tarjetahabiente. Solo para comercios autorizados por Transbank se envía el número completo. Largo máximo 19.
+        accounting_date:
+          type: string
+          description: Fecha de la autorización. Largo 4, formato MMYY
+        transaction_date:
+          type: string
+          description: Fecha y hora de la autorización. formato ISO8601
+        details:
+          type: array
+          description: Lista con resultado de cada una de las transacciones enviadas.
+          items:
+            $ref: '#/components/schemas/ObjetoConfirmarRespuesta_details'
+        prepaid_balance:
+          type: integer
+          description: Saldo de la tarjeta de prepago. Se envía solo si se informa saldo. Largo máximo 17
+      example:
+        {
+          "buy_order": "415034240",
+          "card_detail": {
+            "card_number": "6623"
+          },
+          "accounting_date": "0321",
+          "transaction_date": "2019-03-21T15:43:48.523Z",
+          "details": [
+            {
+              "amount": 500,
+              "status": "AUTHORIZED",
+              "authorization_code": "1213",
+              "payment_type_code": "VN",
+              "response_code": 0,
+              "installments_number": 0,
+              "commerce_code": "597055555552",
+              "buy_order": "505479072"
+            }
+          ]
+        }
+        
+    RespuestaExitosaConsultarEstadoTransaccionCompletaMall:
+      type: object
+      properties:
+        buy_order:
+          type: string
+          description: Orden de compra del mall. Largo máximo 26
+        card_detail:
+          type: object
+          description: Objeto que representa los datos de la tarjeta de crédito del tarjeta habiente.
+          properties:
+            card_number:
+              type: string
+              description: 4 últimos números de la tarjeta de crédito del tarjetahabiente. Solo para comercios autorizados por Transbank se envía el número completo. Largo máximo 19.
+        accounting_date:
+          type: string
+          description: Fecha de la autorización. Largo 4, formato MMYY
+        transaction_date:
+          type: string
+          description: Fecha y hora de la autorización. formato ISO8601
+        details:
+          type: array
+          description: Lista con resultado de cada una de las transacciones enviadas.
+          items:
+            $ref: '#/components/schemas/ObjetoConfirmarRespuesta_details'
+        balance:
+          type: number
+          description: Monto restante para un detalle anulado. Largo máximo 17
+          format: float          
+        prepaid_balance:
+          type: integer
+          description: Saldo de la tarjeta de prepago. Se envía solo si se informa saldo. Largo máximo 17
+      example:
+        {
+          "buy_order": "415034240",
+          "card_detail": {
+            "card_number": "6623"
+          },
+          "accounting_date": "0321",
+          "transaction_date": "2019-03-21T15:43:48.523Z",
+          "details": [
+            {
+              "amount": 500,
+              "status": "AUTHORIZED",
+              "authorization_code": "1213",
+              "payment_type_code": "VN",
+              "response_code": 0,
+              "installments_number": 0,
+              "commerce_code": "597055555552",
+              "buy_order": "505479072"
+            }
+          ]
+        }
+    
+    BodyReversarAnularTransaccionCompletaMallPost:
+      type: object
+      properties:
+        buy_order:
+          type: string
+          description: Orden de compra de la transacción que se requiere capturar. Largo máximo 26.
+          maxLength: 26
+        commerce_code:
+          type: string
+          description: Tienda hija que realizó la transacción. Largo 12.
+          maxLength: 12
+        amount:
+          type: number
+          description: Monto que se desea anular o reversar de la transacción. Largo máximo 17.Formato número entero para transacciones en peso. Sólo en caso de dólar acepta dos decimales.
+          format: float
+      example:
+        {
+          "buy_order": "415034240",
+          "commerce_code": "597055555552",
+          "amount": 1000
+        }
+        
+    RespuestaExitosaAnularTransaccionCompletaMall:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Tipo de reembolso (REVERSE o NULLIFY). Si es REVERSE no se devolverán datos de la transacción. Largo máximo 10
+        authorization_code:
+          type: string
+          description: Código de autorización de la anulación. Largo máximo 6. Solo viene en caso de anulación.
+        authorization_date:
+          type: string
+          description: Fecha y hora de la autorización. Solo viene en caso de anulación.
+        nullified_amount:
+          type: number
+          description: Monto anulado. Largo máximo 17. Solo viene en caso de anulación.
+          format: float
+        balance:
+          type: number
+          description: Saldo actualizado de la transacción (considera la venta menos el monto anulado). Largo máximo 17. Solo viene en caso de anulación.
+          format: float
+        response_code:
+          type: integer
+          description: Código del resultado del pago. Si es exitoso es 0, de lo contrario el pago no fue realizado. Largo máximo 2. Solo viene en caso de anulación.
+          maximum: 99
+      example:
+        {
+          "type": "NULLIFY",
+          "authorization_code": "123456",
+          "authorization_date": "2019-03-20T20:18:20Z",
+          "nullified_amount": 1000.00,
+          "balance": 0.00,
+          "response_code": 0
+        }
+        
+    BodyCapturaDiferidaTransaccionCompletaMallPut:
+      type: object
+      properties:
+        commerce_code:
+          type: string
+          description: (Opcional, solo usar en caso Mall) Tienda hija que realizó la transacción. Largo 12.
+          maxLength: 12
+        buy_order:
+          type: string
+          description: Orden de compra de la transacción que se requiere capturar. Largo máximo 26.
+          maxLength: 26
+        authorization_code:
+          type: string
+          description: Código de autorización de la transacción que se requiere capturar Largo máximo 6.
+          maxLength: 6
+        capture_amount:
+          type: number
+          description: Monto que se desea capturar. Largo máximo 17.
+          format: float
+      example:
+        {
+          "commerce_code": "597055555531",
+          "buy_order": "415034240",
+          "authorization_code": "12345",
+          "capture_amount": 1000
+        }
+    RespuestaExitosaCapturaDiferidaTransaccionCompletaMall:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Token de la transacción. Largo máximo 64
+          maxLength: 64
+        authorization_code:
+          type: string
+          description: Código de autorización de la captura diferida. Largo máximo 6
+          maxLength: 6
+        authorization_date:
+          type: string
+          description: Fecha y hora de la autorización.
+        captured_amount:
+          type: number
+          description: Monto capturado. Largo máximo 6
+          format: float
+        response_code:
+          type: integer
+          description: Código de resultado de la captura. Si es exitoso es 0,de lo contrario la captura no fue realizada. Largo máximo 2
+      example:
+        {
+          "token": "e074d38c628122c63e5c0986368ece22974d6fee1440617d85873b7b4efa48a3",
+          "authorization_code": "123456",
+          "authorization_date": "2019-03-20T20:18:20Z",
+          "captured_amount": 1000,
+          "response_code": 0
+        }
+    
+  responses:
+    BadRequest:
+      description:   El mensaje JSON es inválido. Puedes ser que no corresponda a un mensaje bien estructurado o que contenga un campo no esperado
+      content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error_message:
+                    type: string
+                    example: token is required
+    Unauthorized:
+      description: No autorizado. API Key y/o API Secret inválidos
+    NotFound:
+      description: La transacción no ha sido encontrada
+    MethodNotAllowed:
+      description: Método no permitido
+    NotAcceptable:
+      description: No fue posible procesar la respuesta en el formato que el cliente indica
+    UnsupportedMediaType:
+      description: Tipo de mensaje no permitido
+    UnprocessableEntity:
+      description: El requerimiento no ha podido ser procesado ya sea por validaciones de datos o por lógica de negocios
+    InternalServerError:
+      description: Ha ocurrido un error inesperado
+  
+  securitySchemes:
+    tbkApiKeyId:
+      type: apiKey
+      name: Tbk-Api-Key-Id
+      in: header
+      description: Código de comercio
+    tbkApiKeySecret:
+      type: apiKey
+      name: Tbk-Api-Key-Secret
+      in: header
+      description: LLave secreta
+        
+security:
+  - tbkApiKeyId: []
+    tbkApiKeySecret: []

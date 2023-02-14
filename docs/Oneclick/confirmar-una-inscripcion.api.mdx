@@ -1,0 +1,66 @@
+---
+id: confirmar-una-inscripcion
+title: "Confirmar una inscripción"
+description: "Permite finalizar el proceso de inscripción obteniendo el usuario tbk. Una vez terminado el flujo de inscripción en Transbank el usuario es enviado a la URL de fin de inscripción que definió el comercio (responseURL). En ese momento el comercio debe confirmar la inscripción. El comercio tendrá un máximo de 60 segundos para llamar a este método luego de recibir el token en la URL de fin de inscripción (returnUrl). Pasados los 60 segundos sin llamada a el método de confirmar una inscripción, la inscripción en curso junto con el usuario serán eliminados. Una vez que se autorice la inscripción del usuario, se retornará el control al comercio vía POST (GET si usas el API 1.1 o superior) en la url indicada en response_url, con el parámetro TBK_TOKEN identificando la transacción."
+sidebar_label: "Confirmar una inscripción"
+hide_title: true
+hide_table_of_contents: true
+api: {"tags":["Oneclick Mall"],"description":"Permite finalizar el proceso de inscripción obteniendo el usuario tbk. Una vez terminado el flujo de inscripción en Transbank el usuario es enviado a la URL de fin de inscripción que definió el comercio (responseURL). En ese momento el comercio debe confirmar la inscripción. El comercio tendrá un máximo de 60 segundos para llamar a este método luego de recibir el token en la URL de fin de inscripción (returnUrl). Pasados los 60 segundos sin llamada a el método de confirmar una inscripción, la inscripción en curso junto con el usuario serán eliminados. Una vez que se autorice la inscripción del usuario, se retornará el control al comercio vía POST (GET si usas el API 1.1 o superior) en la url indicada en response_url, con el parámetro TBK_TOKEN identificando la transacción.","parameters":[{"name":"token","in":"path","required":true,"description":"Token de la transacción","schema":{"type":"string","minimum":64,"maximum":64,"example":"e9d555262db0f989e49d724b4db0b0af367cc415cde41f500a776550fc5fddd3"}}],"responses":{"200":{"description":"(OK) La informacion de la inscripcion","content":{"application/json":{"schema":{"type":"object","properties":{"response_code":{"type":"integer","description":"Código de respuesta de la autorizacio.Largo 2.Valores posibles0 = Transacción aprobada Puedes revisar los códigos de respuesta de rechazo en el siguiente link transbankdevelopers.cl/producto/webpay#codigos-de-respuesta-de-autorizacion","maximum":99},"tbk_user":{"type":"string","description":"Identificador único de la inscripción del cliente en Oneclick, que debe ser usado para realizar pagos o borrar la inscripción. Largo 40.","minLength":40,"maxLength":40},"authorization_code":{"type":"string","description":"Código que identifica la autorización de la inscripción.Largo 6.","minLength":6,"maxLength":6},"card_type":{"type":"string","description":"Indica el tipo de tarjeta inscrita por el cliente (Visa, AmericanExpress, MasterCard, Diners, Magna, Redcompra, Prepago). Largo 15.","maxLength":15},"card_number":{"type":"string","description":"Últimos 4 dígitos de la tarjeta inscrito."}},"example":{"response_code":0,"tbk_user":"b6bd6ba3-e718-4107-9386-d2b099a8dd42","authorization_code":"123456","card_type":"Visa","card_number":"XXXXXXXXXXXX6623"}}}}},"400":{"description":"El mensaje JSON es inválido. Puedes ser que no corresponda a un mensaje bien estructurado o que contenga un campo no esperado","content":{"application/json":{"schema":{"type":"object","properties":{"error_message":{"type":"string","example":"token is required"}}}}}},"401":{"description":"No autorizado. API Key y/o API Secret inválidos"},"404":{"description":"La transacción no ha sido encontrada"},"405":{"description":"Método no permitido"},"406":{"description":"No fue posible procesar la respuesta en el formato que el cliente indica"},"415":{"description":"Tipo de mensaje no permitido"},"422":{"description":"El requerimiento no ha podido ser procesado ya sea por validaciones de datos o por lógica de negocios"},"500":{"description":"Ha ocurrido un error inesperado"}},"method":"put","path":"/rswebpaytransaction/api/oneclick/v1.2/inscriptions/{token}","servers":[{"url":"https://webpay3gint.transbank.cl"}],"security":[{"tbkApiKeyId":[],"tbkApiKeySecret":[]}],"securitySchemes":{"tbkApiKeyId":{"type":"apiKey","name":"Tbk-Api-Key-Id","in":"header","description":"Código de comercio"},"tbkApiKeySecret":{"type":"apiKey","name":"Tbk-Api-Key-Secret","in":"header","description":"LLave secreta"}},"info":{"title":"API Oneclick Mall","description":"La modalidad de pago Oneclick permite al tarjetahabiente realizar pagos en el comercio sin la necesidad de ingresar cada vez información de la tarjeta de crédito al momento de realizar la compra. El modelo de pago contempla un proceso previo de inscripción o enrolamiento del tarjetahabiente, a través del comercio, que desee utilizar el servicio. Este tipo de pago facilita la venta, disminuye el tiempo de la transacción y reduce los riesgos de ingreso erróneo de los datos del medio de pago.\nEl proceso de integración con Oneclick consiste en desarrollar por parte del comercio las llamadas a los servicios web dispuestos por Transbank para la inscripción de los tarjetahabientes, así como para la realización de los pagos.","termsOfService":"https://www.transbankdevelopers.cl/termino-y-condiciones","version":"1.0.0"},"postman":{"name":"Confirmar una inscripción","description":{"content":"Permite finalizar el proceso de inscripción obteniendo el usuario tbk. Una vez terminado el flujo de inscripción en Transbank el usuario es enviado a la URL de fin de inscripción que definió el comercio (responseURL). En ese momento el comercio debe confirmar la inscripción. El comercio tendrá un máximo de 60 segundos para llamar a este método luego de recibir el token en la URL de fin de inscripción (returnUrl). Pasados los 60 segundos sin llamada a el método de confirmar una inscripción, la inscripción en curso junto con el usuario serán eliminados. Una vez que se autorice la inscripción del usuario, se retornará el control al comercio vía POST (GET si usas el API 1.1 o superior) en la url indicada en response_url, con el parámetro TBK_TOKEN identificando la transacción.","type":"text/plain"},"url":{"path":["rswebpaytransaction","api","oneclick","v1.2","inscriptions",":token"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) Token de la transacción","type":"text/plain"},"type":"any","value":"","key":"token"}]},"header":[{"key":"Accept","value":"application/json"}],"method":"PUT"}}
+sidebar_class_name: "put api-method"
+info_path: docs/Oneclick/api-oneclick-mall
+custom_edit_url: null
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## Confirmar una inscripción
+
+
+
+Permite finalizar el proceso de inscripción obteniendo el usuario tbk. Una vez terminado el flujo de inscripción en Transbank el usuario es enviado a la URL de fin de inscripción que definió el comercio (responseURL). En ese momento el comercio debe confirmar la inscripción. El comercio tendrá un máximo de 60 segundos para llamar a este método luego de recibir el token en la URL de fin de inscripción (returnUrl). Pasados los 60 segundos sin llamada a el método de confirmar una inscripción, la inscripción en curso junto con el usuario serán eliminados. Una vez que se autorice la inscripción del usuario, se retornará el control al comercio vía POST (GET si usas el API 1.1 o superior) en la url indicada en response_url, con el parámetro TBK_TOKEN identificando la transacción.
+
+<details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Path Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"name":"token","in":"path","required":true,"description":"Token de la transacción","schema":{"type":"string","minimum":64,"maximum":64,"example":"e9d555262db0f989e49d724b4db0b0af367cc415cde41f500a776550fc5fddd3"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+(OK) La informacion de la inscripcion
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"response_code"} required={false} deprecated={undefined} schemaDescription={"Código de respuesta de la autorizacio.Largo 2.Valores posibles0 = Transacción aprobada Puedes revisar los códigos de respuesta de rechazo en el siguiente link transbankdevelopers.cl/producto/webpay#codigos-de-respuesta-de-autorizacion"} schemaName={"integer"} qualifierMessage={"**Possible values:** `<= 99`"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"tbk_user"} required={false} deprecated={undefined} schemaDescription={"Identificador único de la inscripción del cliente en Oneclick, que debe ser usado para realizar pagos o borrar la inscripción. Largo 40."} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 40 characters` and `<= 40 characters`"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"authorization_code"} required={false} deprecated={undefined} schemaDescription={"Código que identifica la autorización de la inscripción.Largo 6."} schemaName={"string"} qualifierMessage={"**Possible values:** `>= 6 characters` and `<= 6 characters`"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"card_type"} required={false} deprecated={undefined} schemaDescription={"Indica el tipo de tarjeta inscrita por el cliente (Visa, AmericanExpress, MasterCard, Diners, Magna, Redcompra, Prepago). Largo 15."} schemaName={"string"} qualifierMessage={"**Possible values:** `<= 15 characters`"} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"card_number"} required={false} deprecated={undefined} schemaDescription={"Últimos 4 dígitos de la tarjeta inscrito."} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"response_code\": 0,\n  \"tbk_user\": \"b6bd6ba3-e718-4107-9386-d2b099a8dd42\",\n  \"authorization_code\": \"123456\",\n  \"card_type\": \"Visa\",\n  \"card_number\": \"XXXXXXXXXXXX6623\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+El mensaje JSON es inválido. Puedes ser que no corresponda a un mensaje bien estructurado o que contenga un campo no esperado
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"error_message"} required={false} deprecated={undefined} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"error_message\": \"token is required\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"401"} value={"401"}><div>
+
+No autorizado. API Key y/o API Secret inválidos
+
+</div><div></div></TabItem><TabItem label={"404"} value={"404"}><div>
+
+La transacción no ha sido encontrada
+
+</div><div></div></TabItem><TabItem label={"405"} value={"405"}><div>
+
+Método no permitido
+
+</div><div></div></TabItem><TabItem label={"406"} value={"406"}><div>
+
+No fue posible procesar la respuesta en el formato que el cliente indica
+
+</div><div></div></TabItem><TabItem label={"415"} value={"415"}><div>
+
+Tipo de mensaje no permitido
+
+</div><div></div></TabItem><TabItem label={"422"} value={"422"}><div>
+
+El requerimiento no ha podido ser procesado ya sea por validaciones de datos o por lógica de negocios
+
+</div><div></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Ha ocurrido un error inesperado
+
+</div><div></div></TabItem></ApiTabs></div>
+      
