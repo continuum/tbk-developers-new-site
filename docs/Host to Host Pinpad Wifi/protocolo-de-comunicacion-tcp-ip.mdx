@@ -1,0 +1,29 @@
+---
+title: "Protocolo de comunicación TCP/IP"
+sidebar_label: "Protocolo de comunicación TCP/IP"
+---
+
+Este protocolo permite la comunicación entre un ECR (Electronic Cash Register) y un PINPAD a través de una red que soporte el protocolo TCP/IP. Es importante tener en consideración el control de errores sobre las funciones de TCP/IP para asegurar que cada uno de los mensajes llegue al destinatario y hacer gestión sobre los reintentos cuando sea necesario. El siguiente diagrama ejemplifica la construcción de los comandos en el protocolo TCP/IP.
+
+![Protocolo TCP/IP](https://www.transbankdevelopers.cl/public/slate-library/images/documentacion/host2host/protocolo-tcp.png)
+
+Donde:
+
+*   LARGO\_DATA: 4 bytes indicando el largo del mensaje, sin incluir estos 4 bytes.
+*   DATA: Es el mensaje que se quiere enviar.
+
+**Diagrama genérico de secuencia de comandos**
+
+El diagrama que se describe corresponde a la generalización del comportamiento de cada uno de los comandos.
+
+![Protocolo TCP/IP Caja a Pinpad](https://www.transbankdevelopers.cl/public/slate-library/images/documentacion/host2host/flujo-secuencia-wifi.png)
+
+![Protocolo TCP/IP PinPad a Caja](https://www.transbankdevelopers.cl/public/slate-library/images/documentacion/host2host/flujo-secuencia-wifi-pinpad-caja.png)
+
+**Flujo de venta detallado**
+
+![Secuencia detallada venta](https://www.transbankdevelopers.cl/public/slate-library/images/documentacion/host2host/secuencia-detallada-venta-wifi.png)
+
+**Diagrama**
+
+![Diagrama detallada venta](https://www.transbankdevelopers.cl/public/slate-library/images/documentacion/host2host/diagrama-flujo-detallado-venta.png)

@@ -1,0 +1,18 @@
+---
+title: "Archivo de implementación TLS"
+sidebar_label: "Archivo de implementación TLS"
+---
+
+La implementación de TLS realizada es la de autenticación mutua two-way, es decir el PinPad valida a la caja y a la inversa. Para implementar TLS entre el Pinpad vx680 y la caja del comercio se requieren de los siguientes archivos:
+
+**Certificados TLS del Pinpad:**
+
+1.  Certificado cliente: "client.PEM": Certificado con el que se presenta al Servidor.
+2.  Llave de validación del certificado de cliente: "client.key": Necesario para validar que el certificado cargado es el que corresponde.
+3.  Certificado para validar el servidor: "CA.PEM": Para validar el certificado del Servidor.
+
+**Certificados TLS del Servidor (Caja del Comercio):**
+
+1.  Certificado servidor: "server.PEM": Certificado con el que se presenta al cliente.
+2.  Llave de validación del certificado de servidor: "server.key": Llave privada usada para firmar.
+3.  Certificado para validar el cliente: "CAClient.PEM": Para validar el certificado del cliente.
